@@ -24,10 +24,50 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Picanha na Brasa - Churrascaria Estudantil",
+  title: "Picanha na Brasa - Churrascaria Estudantil | 25 de Outubro",
   description:
-    "Venha saborear nossos deliciosos espetinhos no dia 25 de outubro. Projeto da Feira Gastronômica do Colégio Talentos.",
+    "Venha saborear nossos deliciosos espetinhos no dia 25 de outubro das 9h às 13h. Projeto da Feira Gastronômica do Colégio Talentos em Uberlândia. Espetinhos de Contra Filé, Franbacon e Coração a partir de R$10. Apoie nossa formatura 2025!",
   generator: "v0.app",
+  keywords: [
+    "churrasco",
+    "espetinhos",
+    "Uberlândia",
+    "Colégio Talentos",
+    "feira gastronômica",
+    "formatura 2025",
+    "picanha na brasa",
+  ],
+  authors: [{ name: "Turma 9º Ano - Colégio Talentos" }],
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://picanha-na-brasa.vercel.app",
+    siteName: "Picanha na Brasa",
+    title: "Picanha na Brasa - Churrascaria Estudantil | 25 de Outubro",
+    description:
+      "Deliciosos espetinhos preparados pela turma do Colégio Talentos. Venha nos visitar dia 25 de outubro das 9h às 13h na Av. Constelação, 1175. Apoie nossa formatura 2025!",
+    images: [
+      {
+        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20Picanha%20na%20Brasa-uA5Q6GNzrhnE7oiyTvb38b76cPwWHG.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Picanha na Brasa - Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Picanha na Brasa - Churrascaria Estudantil",
+    description:
+      "Espetinhos deliciosos no dia 25 de outubro! Projeto estudantil do Colégio Talentos. Apoie nossa formatura 2025!",
+    images: [
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20Picanha%20na%20Brasa-uA5Q6GNzrhnE7oiyTvb38b76cPwWHG.jpg",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({

@@ -12,6 +12,8 @@ import {
   Award,
   Users,
   TrendingUp,
+  Copy,
+  Check,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -22,6 +24,17 @@ import { MobileNav } from "@/components/mobile-nav"
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [pixCopied, setPixCopied] = useState(false)
+
+  const copyPixKey = async () => {
+    try {
+      await navigator.clipboard.writeText("14673352661")
+      setPixCopied(true)
+      setTimeout(() => setPixCopied(false), 3000)
+    } catch (err) {
+      console.error("Erro ao copiar chave PIX:", err)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#1A1A1A]">
@@ -46,7 +59,7 @@ export default function Home() {
           style={{ animationDelay: "3s" }}
         />
 
-        <div className="container relative z-10 px-4 py-20 text-center">
+        <div className="container mx-auto relative z-10 px-4 py-20 text-center">
           <div className="mb-8 md:mb-12 flex justify-center slide-up-fade">
             <div className="relative fire-glow rounded-3xl p-2">
               <Image
@@ -130,7 +143,7 @@ export default function Home() {
 
       {/* About Section */}
       <section className="relative bg-gradient-to-b from-[#0a0a0a] to-[#1A1A1A] py-24 md:py-32 overflow-hidden section-divider-fire">
-        <div className="container relative z-10 px-4">
+        <div className="container mx-auto relative z-10 px-4">
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-3 bg-[#D62828]/15 border-2 border-[#D62828]/30 px-6 py-3 rounded-full mb-8">
@@ -185,145 +198,153 @@ export default function Home() {
       </section>
 
       {/* Menu Section */}
-      <section id="cardapio" className="relative bg-[#1A1A1A] py-24 md:py-32 section-divider-fire">
-        <div className="container px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 bg-[#F77F00]/15 border-2 border-[#F77F00]/30 px-6 py-3 rounded-full mb-8">
-              <UtensilsCrossed className="h-6 w-6 text-[#F77F00]" />
-              <span className="text-[#F77F00] font-bold text-base uppercase tracking-widest">Cardápio</span>
+      <section id="cardapio" className="relative bg-[#1A1A1A] py-20 md:py-32 section-divider-fire">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-20">
+            <div className="inline-flex items-center gap-3 bg-[#F77F00]/15 border-2 border-[#F77F00]/30 px-5 py-2.5 md:px-6 md:py-3 rounded-full mb-6 md:mb-8">
+              <UtensilsCrossed className="h-5 w-5 md:h-6 md:w-6 text-[#F77F00]" />
+              <span className="text-[#F77F00] font-bold text-sm md:text-base uppercase tracking-widest">Cardápio</span>
             </div>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-[#FFFFFF] leading-none uppercase tracking-tight">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#FFFFFF] leading-none uppercase tracking-tight px-4">
               Nosso <span className="gradient-text-fire">Cardápio</span>
             </h2>
-            <p className="mt-6 text-zinc-400 text-xl max-w-2xl mx-auto font-medium">
+            <p className="mt-4 md:mt-6 text-zinc-400 text-base md:text-xl max-w-2xl mx-auto font-medium px-4">
               Espetinhos preparados com ingredientes selecionados e muito sabor
             </p>
           </div>
 
-          <div className="mx-auto max-w-5xl mb-20">
+          <div className="mx-auto max-w-5xl mb-12 md:mb-20 px-2">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="relative group w-full cursor-pointer"
+              className="relative group w-full cursor-pointer touch-manipulation"
               aria-label="Abrir cardápio em tela cheia"
             >
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#D62828] via-[#F77F00] to-[#D62828] rounded-3xl blur-2xl opacity-40 group-hover:opacity-70 transition duration-500" />
+              <div className="absolute -inset-1 md:-inset-2 bg-gradient-to-r from-[#D62828] to-[#F77F00] rounded-2xl md:rounded-3xl blur-xl md:blur-2xl opacity-40 group-hover:opacity-70 transition duration-500" />
               <div className="relative">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-2D4WBBhZpUum64PV7jm42utQcfaFyt.png"
                   alt="Cardápio Picanha na Brasa - Clique para ampliar"
                   width={1200}
                   height={800}
-                  className="relative h-auto w-full rounded-3xl shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="relative h-auto w-full rounded-2xl md:rounded-3xl shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+                  priority
                 />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#1A1A1A]/60 rounded-3xl backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#D62828] to-[#F77F00] flex items-center justify-center mx-auto mb-4 shadow-2xl">
-                      <UtensilsCrossed className="h-10 w-10 text-white" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#1A1A1A]/70 rounded-2xl md:rounded-3xl backdrop-blur-sm">
+                  <div className="text-center px-4">
+                    <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-[#D62828] to-[#F77F00] flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-2xl">
+                      <UtensilsCrossed className="h-8 w-8 md:h-10 md:w-10 lg:h-8 lg:w-8 text-white" />
                     </div>
-                    <p className="text-white font-bold text-2xl font-display uppercase">Clique para Ampliar</p>
-                    <p className="text-zinc-300 text-sm mt-2">Visualize o cardápio completo</p>
+                    <p className="text-white font-bold text-xl md:text-2xl font-display uppercase">
+                      Clique para Ampliar
+                    </p>
+                    <p className="text-zinc-300 text-xs md:text-sm mt-2">Visualize o cardápio completo</p>
                   </div>
                 </div>
               </div>
             </button>
           </div>
 
-          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="card-bbq p-9 backdrop-blur-md">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-full gradient-fire flex items-center justify-center shadow-xl">
-                  <UtensilsCrossed className="h-8 w-8 text-[#FFFFFF]" />
-                </div>
-                <h3 className="font-display text-3xl font-bold text-[#F77F00] uppercase">Gourmet</h3>
-              </div>
-              <div className="space-y-5 text-zinc-300">
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Prato Feito</span>
-                    <span className="text-sm text-zinc-500">Arroz, farofa, vinagrete e mandioca</span>
+          <div className="mx-auto max-w-6xl">
+            <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 lg:gap-8 md:justify-items-center">
+              {/* Gourmet Card */}
+              <Card className="card-bbq p-6 md:p-8 lg:p-9 backdrop-blur-md w-full max-w-md md:max-w-none">
+                <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                  <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
+                    <UtensilsCrossed className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-[#FFFFFF]" />
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 15</span>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[#F77F00] uppercase">Gourmet</h3>
                 </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Marmita</span>
-                    <span className="text-sm text-zinc-500">Arroz, farofa, vinagrete e mandioca</span>
+                <div className="space-y-4 md:space-y-5">
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Prato Feito</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 15</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">Arroz, farofa, vinagrete e mandioca</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 20</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Marmita</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 20</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">Arroz, farofa, vinagrete e mandioca</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
 
-            <Card className="card-bbq p-9 backdrop-blur-md">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-full gradient-fire flex items-center justify-center shadow-xl">
-                  <Flame className="h-8 w-8 text-[#FFFFFF]" />
-                </div>
-                <h3 className="font-display text-3xl font-bold text-[#F77F00] uppercase">Espetos</h3>
-              </div>
-              <div className="space-y-5 text-zinc-300">
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Contra Filé</span>
-                    <span className="text-sm text-zinc-500">100g</span>
+              {/* Espetos Card */}
+              <Card className="card-bbq p-6 md:p-8 lg:p-9 backdrop-blur-md w-full max-w-md md:max-w-none">
+                <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                  <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full gradient-fire flex items-center justify-center shadow-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Flame className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-[#FFFFFF]" />
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 10</span>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[#F77F00] uppercase">Espetos</h3>
                 </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Franbacon</span>
-                    <span className="text-sm text-zinc-500">100g</span>
+                <div className="space-y-4 md:space-y-5">
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Contra Filé</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 10</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">100g</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 10</span>
-                </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Coração</span>
-                    <span className="text-sm text-zinc-500">100g</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Franbacon</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 10</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">100g</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 10</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Coração</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 10</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">100g</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
 
-            <Card className="card-bbq p-9 backdrop-blur-md md:col-span-2 lg:col-span-1">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 rounded-full gradient-fire flex items-center justify-center shadow-xl">
-                  <span className="text-3xl">🥤</span>
-                </div>
-                <h3 className="font-display text-3xl font-bold text-[#F77F00] uppercase">Bebidas</h3>
-              </div>
-              <div className="space-y-5 text-zinc-300">
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Coca-Cola Normal</span>
-                    <span className="text-sm text-zinc-500">310ml</span>
+              {/* Bebidas Card */}
+              <Card className="card-bbq p-6 md:p-8 lg:p-9 backdrop-blur-md w-full max-w-md md:max-w-none md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0">
+                <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                  <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full gradient-fire flex items-center justify-center shadow-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <span className="text-2xl md:text-3xl">🥤</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 5</span>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[#F77F00] uppercase">Bebidas</h3>
                 </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Coca-Cola Zero</span>
-                    <span className="text-sm text-zinc-500">310ml</span>
+                <div className="space-y-4 md:space-y-5">
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Coca-Cola Normal</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 5</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">310ml</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 5</span>
-                </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Guaraná Antarctica</span>
-                    <span className="text-sm text-zinc-500">350ml</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Coca-Cola Zero</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 5</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">310ml</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 5</span>
-                </div>
-                <div className="flex justify-between items-center pb-4 border-b-2 border-zinc-800">
-                  <div>
-                    <span className="font-bold text-[#FFFFFF] block text-lg">Água com gás</span>
-                    <span className="text-sm text-zinc-500">500ml</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Guaraná Antarctica</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 5</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">350ml</span>
                   </div>
-                  <span className="font-bold text-[#F77F00] text-2xl">R$ 5</span>
+                  <div className="pb-4 border-b-2 border-zinc-800">
+                    <div className="flex justify-between items-start gap-3 mb-1">
+                      <span className="font-bold text-[#FFFFFF] text-base md:text-lg">Água com gás</span>
+                      <span className="font-bold text-[#F77F00] text-xl md:text-2xl flex-shrink-0">R$ 5</span>
+                    </div>
+                    <span className="text-xs md:text-sm text-zinc-500 block">500ml</span>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -333,7 +354,7 @@ export default function Home() {
         id="pix"
         className="relative bg-gradient-to-br from-[#0a0a0a] via-[#1A1A1A] to-[#0a0a0a] py-24 md:py-32 overflow-hidden section-divider-fire fire-overlay"
       >
-        <div className="container relative z-10 px-4">
+        <div className="container mx-auto relative z-10 px-4">
           <div className="mx-auto max-w-4xl text-center">
             <div className="inline-flex items-center gap-3 bg-[#D62828]/15 border-2 border-[#D62828]/30 px-6 py-3 rounded-full mb-8">
               <Heart className="h-6 w-6 text-[#F77F00]" />
@@ -359,6 +380,29 @@ export default function Home() {
                       14673352661
                     </p>
                   </div>
+                </div>
+                <div className="mt-6">
+                  <Button
+                    onClick={copyPixKey}
+                    className={`gap-3 font-bold px-8 py-6 text-lg shadow-2xl transition-all duration-300 hover:scale-105 rounded-xl ${
+                      pixCopied
+                        ? "bg-green-600 hover:bg-green-700 text-white"
+                        : "gradient-fire text-[#FFFFFF] hover:shadow-[0_20px_50px_rgba(214,40,40,0.4)]"
+                    }`}
+                    size="lg"
+                  >
+                    {pixCopied ? (
+                      <>
+                        <Check className="h-5 w-5" />
+                        Chave Copiada!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-5 w-5" />
+                        Copiar Chave PIX
+                      </>
+                    )}
+                  </Button>
                 </div>
                 <p className="text-base text-zinc-400 mt-6 font-medium">
                   Use essa chave diretamente no app do seu banco para contribuir
@@ -399,7 +443,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contato" className="relative bg-[#1A1A1A] py-20 md:py-32 section-divider-fire pb-28 md:pb-32">
-        <div className="container px-4">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-flex items-center gap-3 bg-[#F77F00]/15 border-2 border-[#F77F00]/30 px-6 py-3 rounded-full mb-8">
               <Phone className="h-6 w-6 text-[#F77F00]" />
@@ -413,143 +457,147 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto grid max-w-6xl gap-8 md:gap-10 lg:grid-cols-2">
-            <Card className="card-bbq p-8 md:p-10 lg:p-12 backdrop-blur-md">
-              <h3 className="mb-8 md:mb-10 font-display text-3xl md:text-4xl font-bold text-[#FFFFFF] uppercase">
-                Informações
-              </h3>
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-8 md:gap-10 lg:grid-cols-2 justify-items-center lg:justify-items-stretch">
+              <Card className="card-bbq p-8 md:p-10 lg:p-12 backdrop-blur-md w-full max-w-2xl lg:max-w-none">
+                <h3 className="mb-8 md:mb-10 font-display text-3xl md:text-4xl font-bold text-[#FFFFFF] uppercase">
+                  Informações
+                </h3>
 
-              <div className="space-y-6 md:space-y-8">
-                <div className="flex items-start gap-4 md:gap-5 group">
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
-                    <MapPin className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                <div className="space-y-6 md:space-y-8">
+                  <div className="flex items-start gap-4 md:gap-5 group">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
+                      <MapPin className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-2">Endereço</p>
+                      <p className="text-zinc-400 text-sm md:text-base">Av. Constelação, 1175</p>
+                      <p className="text-zinc-400 text-sm md:text-base">Jardim Brasília, Uberlândia - MG</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-2">Endereço</p>
-                    <p className="text-zinc-400 text-sm md:text-base">Av. Constelação, 1175</p>
-                    <p className="text-zinc-400 text-sm md:text-base">Jardim Brasília, Uberlândia - MG</p>
+
+                  <div className="flex items-start gap-4 md:gap-5 group">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
+                      <Clock className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-2">Horário de Funcionamento</p>
+                      <p className="text-zinc-400 text-sm md:text-base">9h às 13h</p>
+                      <p className="text-sm md:text-base text-[#F77F00] font-bold mt-2">25 de outubro</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 md:gap-5 group">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
+                      <Phone className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-3">WhatsApp</p>
+                      <a
+                        href="https://wa.me/5534999075010"
+                        className="block text-zinc-400 hover:text-[#F77F00] transition-colors font-bold mb-2 text-sm md:text-base"
+                      >
+                        (34) 99907-5010
+                      </a>
+                      <a
+                        href="https://wa.me/5534997677712"
+                        className="block text-zinc-400 hover:text-[#F77F00] transition-colors font-bold text-sm md:text-base"
+                      >
+                        (34) 99767-7712
+                      </a>
+                    </div>
                   </div>
                 </div>
+              </Card>
 
-                <div className="flex items-start gap-4 md:gap-5 group">
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
-                    <Clock className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-2">Horário de Funcionamento</p>
-                    <p className="text-zinc-400 text-sm md:text-base">9h às 13h</p>
-                    <p className="text-sm md:text-base text-[#F77F00] font-bold mt-2">25 de outubro</p>
-                  </div>
+              <Card className="card-bbq p-8 md:p-10 lg:p-12 backdrop-blur-md w-full max-w-2xl lg:max-w-none">
+                <h3 className="mb-8 md:mb-10 font-display text-3xl md:text-4xl font-bold text-[#FFFFFF] uppercase">
+                  Redes Sociais
+                </h3>
+
+                <div className="space-y-4 md:space-y-5 mb-8 md:mb-10">
+                  <a
+                    href="https://instagram.com/picanha_na.brasa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
+                  >
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
+                      <Instagram className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">Instagram do Evento</p>
+                      <p className="text-sm md:text-base text-zinc-400 truncate">@picanha_na.brasa</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://instagram.com/9anotalentos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
+                  >
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
+                      <Instagram className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">Instagram da Turma</p>
+                      <p className="text-sm md:text-base text-zinc-400 truncate">@9anotalentos</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://tiktok.com/@9anoofficial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
+                  >
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
+                      <Send className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">TikTok da Turma</p>
+                      <p className="text-sm md:text-base text-zinc-400 truncate">@9anoofficial</p>
+                    </div>
+                  </a>
                 </div>
 
-                <div className="flex items-start gap-4 md:gap-5 group">
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-xl">
-                    <Phone className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl mb-3">WhatsApp</p>
-                    <a
-                      href="https://wa.me/5534999075010"
-                      className="block text-zinc-400 hover:text-[#F77F00] transition-colors font-bold mb-2 text-sm md:text-base"
-                    >
-                      (34) 99907-5010
-                    </a>
-                    <a
-                      href="https://wa.me/5534997677712"
-                      className="block text-zinc-400 hover:text-[#F77F00] transition-colors font-bold text-sm md:text-base"
-                    >
-                      (34) 99767-7712
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="card-bbq p-8 md:p-10 lg:p-12 backdrop-blur-md">
-              <h3 className="mb-8 md:mb-10 font-display text-3xl md:text-4xl font-bold text-[#FFFFFF] uppercase">
-                Redes Sociais
-              </h3>
-
-              <div className="space-y-4 md:space-y-5 mb-8 md:mb-10">
-                <a
-                  href="https://instagram.com/picanha_na.brasa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
+                <Button
+                  className="w-full gap-3 gradient-fire text-[#FFFFFF] font-bold py-7 md:py-8 text-lg md:text-xl shadow-2xl hover:shadow-[0_20px_50px_rgba(214,40,40,0.4)] transition-all duration-300 hover:scale-105 rounded-xl"
+                  size="lg"
+                  asChild
                 >
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
-                    <Instagram className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">Instagram do Evento</p>
-                    <p className="text-sm md:text-base text-zinc-400 truncate">@picanha_na.brasa</p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://instagram.com/9anotalentos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
-                >
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
-                    <Instagram className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">Instagram da Turma</p>
-                    <p className="text-sm md:text-base text-zinc-400 truncate">@9anotalentos</p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://tiktok.com/@9anoofficial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 md:gap-5 rounded-2xl border-2 border-[#F77F00]/30 bg-[#0a0a0a] p-5 md:p-6 transition-all hover:border-[#F77F00] hover:bg-[#0f0f0f] hover:scale-105 group"
-                >
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full gradient-fire flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl flex-shrink-0">
-                    <Send className="h-7 w-7 md:h-8 md:w-8 text-[#FFFFFF]" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#FFFFFF] text-lg md:text-xl truncate">TikTok da Turma</p>
-                    <p className="text-sm md:text-base text-zinc-400 truncate">@9anoofficial</p>
-                  </div>
-                </a>
-              </div>
-
-              <Button
-                className="w-full gap-3 gradient-fire text-[#FFFFFF] font-bold py-7 md:py-8 text-lg md:text-xl shadow-2xl hover:shadow-[0_20px_50px_rgba(214,40,40,0.4)] transition-all duration-300 hover:scale-105 rounded-xl"
-                size="lg"
-                asChild
-              >
-                <a href="https://wa.me/5534999075010" target="_blank" rel="noopener noreferrer">
-                  <Phone className="h-5 w-5 md:h-6 md:w-6" />
-                  Fazer Pedido pelo WhatsApp
-                </a>
-              </Button>
-            </Card>
+                  <a href="https://wa.me/5534999075010" target="_blank" rel="noopener noreferrer">
+                    <Phone className="h-5 w-5 md:h-6 md:w-6" />
+                    Fazer Pedido pelo WhatsApp
+                  </a>
+                </Button>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t-2 border-[#6B3E26] bg-gradient-to-b from-[#0a0a0a] to-[#1A1A1A] py-12 md:py-16 pb-20 md:pb-16">
-        <div className="container px-4 text-center">
-          <div className="mb-6">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20Picanha%20na%20Brasa-uA5Q6GNzrhnE7oiyTvb38b76cPwWHG.jpg"
-              alt="Picanha na Brasa Logo"
-              width={180}
-              height={120}
-              className="h-auto w-32 sm:w-36 md:w-40 mx-auto opacity-90"
-            />
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="mb-6 flex justify-center">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20Picanha%20na%20Brasa-uA5Q6GNzrhnE7oiyTvb38b76cPwWHG.jpg"
+                alt="Picanha na Brasa Logo"
+                width={180}
+                height={120}
+                className="h-auto w-32 sm:w-36 md:w-40 opacity-90"
+              />
+            </div>
+            <p className="text-sm md:text-base text-zinc-400 mb-3 font-medium px-4">
+              © 2025 Picanha na Brasa - Projeto da Turma do 9º Ano do Colégio Talentos
+            </p>
+            <p className="text-xs md:text-sm text-zinc-600 px-4">
+              Feira Gastronômica • Empreendedorismo • Formatura 2025
+            </p>
           </div>
-          <p className="text-sm md:text-base text-zinc-400 mb-3 font-medium px-4">
-            © 2025 Picanha na Brasa - Projeto da Turma do 9º Ano do Colégio Talentos
-          </p>
-          <p className="text-xs md:text-sm text-zinc-600 px-4">
-            Feira Gastronômica • Empreendedorismo • Formatura 2025
-          </p>
         </div>
       </footer>
     </div>
