@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Poppins, Bebas_Neue } from "next/font/google"
 import "./globals.css"
 
@@ -15,11 +15,19 @@ const bebasNeue = Bebas_Neue({
   variable: "--font-display",
 })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#1A1A1A",
+}
+
 export const metadata: Metadata = {
   title: "Picanha na Brasa - Churrascaria Estudantil",
   description:
     "Venha saborear nossos deliciosos espetinhos no dia 25 de outubro. Projeto da Feira Gastronômica do Colégio Talentos.",
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export default function RootLayout({

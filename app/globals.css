@@ -293,17 +293,25 @@ html {
   }
 }
 
-/* Enhanced mobile button styles */
+/* Enhanced mobile responsiveness and layout fixes */
 @media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Better card hover effects on mobile */
   .card-bbq:hover {
     transform: translateY(-4px) scale(1.01);
   }
 
+  /* Optimized button sizes for mobile */
   .btn-primary-fire {
     padding: 1.25rem 2rem;
     font-size: 1.125rem;
   }
 
+  /* Better gradient text rendering on mobile */
   .gradient-text-fire {
     background-size: 150% auto;
   }
@@ -318,6 +326,60 @@ html {
   /* Better spacing for mobile readability */
   section {
     scroll-margin-top: 2rem;
+  }
+
+  /* Ensure proper text wrapping on mobile */
+  h1,
+  h2,
+  h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Better container padding on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Prevent layout shift on mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better grid spacing on mobile */
+  .grid {
+    gap: 1.5rem;
+  }
+
+  /* Ensure cards don't overflow on mobile */
+  .card-bbq {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Extra small devices optimization */
+@media (max-width: 480px) {
+  /* Reduce font sizes for very small screens */
+  .font-display {
+    font-size: 0.9em;
+  }
+
+  /* Better padding for small screens */
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Ensure proper spacing */
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-5 > * + * {
+    margin-top: 1rem;
   }
 }
 
